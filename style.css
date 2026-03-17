@@ -75,7 +75,7 @@ nav a:hover {
 
 /* --- SEZIONE HERO --- */
 .hero {
-    /* Metti qui il link a una tua bella foto panoramica del B&B! */
+    /* Metti qui il link a una tua bella foto panoramica della struttura! */
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80');
     background-size: cover;
     background-position: center;
@@ -115,10 +115,11 @@ nav a:hover {
     background-color: #f9f9f9;
 }
 
-/* --- GRIGLIA CAMERE --- */
+/* --- GRIGLIA SPAZI (Forzata a 2 Colonne) --- */
 .grid-camere {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Questa è la riga magica che forza esattamente 2 colonne uguali */
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
 }
 
@@ -180,7 +181,7 @@ footer {
     padding: 40px 20px;
 }
 
-/* --- MOBILE RESPONSIVE --- */
+/* --- MOBILE RESPONSIVE (Cellulari e Tablet piccoli) --- */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -193,5 +194,10 @@ footer {
     
     .date-prenotazione {
         flex-direction: column;
+    }
+
+    /* Sui cellulari la griglia diventa a 1 sola colonna */
+    .grid-camere {
+        grid-template-columns: 1fr;
     }
 }

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B&B Melvanni | Il tuo soggiorno perfetto</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="logo">B&B Melvanni</div>
+        <nav>
+            <ul>
+                <li><a href="#camere">Camere</a></li>
+                <li><a href="#servizi">Servizi</a></li>
+                <li><a href="#dove-siamo">Dove Siamo</a></li>
+            </ul>
+        </nav>
+        <a href="#contatti" class="btn-prenota">Prenota Ora</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Benvenuti al B&B Melvanni</h1>
+            <p>Ospitalità e relax a pochi passi dal centro.</p>
+            <a href="#contatti" class="btn-prenota-grande">Richiedi Disponibilità</a>
+        </div>
+    </section>
+
+    <section id="camere" class="section">
+        <h2>Le Nostre Camere</h2>
+        <div class="grid-camere">
+            <div class="card-camera">
+                <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80" alt="Camera Matrimoniale">
+                <div class="card-info">
+                    <h3>Camera Matrimoniale Deluxe</h3>
+                    <p>Spaziosa e luminosa, dotata di tutti i comfort per un soggiorno indimenticabile.</p>
+                    <ul>
+                        <li>❄️ Aria Condizionata</li>
+                        <li>📶 Wi-Fi Gratis</li>
+                        <li>🚿 Bagno in Camera</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-camera">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Camera Doppia">
+                <div class="card-info">
+                    <h3>Camera Doppia Standard</h3>
+                    <p>Perfetta per amici o colleghi. Letti separati e ambiente accogliente.</p>
+                    <ul>
+                        <li>❄️ Aria Condizionata</li>
+                        <li>📶 Wi-Fi Gratis</li>
+                        <li>🚿 Bagno in Camera</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="section bg-grigio">
+        <h2>Richiedi Informazioni o Prenota</h2>
+        <p>Compila il modulo per verificare la disponibilità delle nostre camere.</p>
+        
+        <form action="https://formspree.io/f/INSERISCI_IL_TUO_CODICE_QUI" method="POST" class="form-contatti">
+            <input type="text" name="nome" placeholder="Il tuo Nome e Cognome" required>
+            <input type="email" name="email" placeholder="La tua Email" required>
+            
+            <div class="date-prenotazione">
+                <div>
+                    <label>Check-in</label>
+                    <input type="date" name="checkin" required>
+                </div>
+                <div>
+                    <label>Check-out</label>
+                    <input type="date" name="checkout" required>
+                </div>
+            </div>
+            
+            <textarea name="messaggio" placeholder="Note aggiuntive (es. numero di persone, richieste speciali...)" rows="5"></textarea>
+            <button type="submit" class="btn-prenota-grande">Invia Richiesta</button>
+        </form>
+    </section>
+
+    <footer>
+        <p><strong>B&B Melvanni</strong></p>
+        <p>Via Esempio 123, 80100 Napoli (NA)</p>
+        <p>Telefono: +39 012 345 6789 | Email: info@bbmelvanni.it</p>
+        <p>&copy; 2026 B&B Melvanni. Tutti i diritti riservati.</p>
+    </footer>
+
+</body>
+</html>

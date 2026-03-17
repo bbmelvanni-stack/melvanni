@@ -9,7 +9,7 @@
 body {
     color: #333;
     line-height: 1.6;
-    overflow-x: hidden; /* Evita fastidiosi scorrimenti orizzontali su mobile */
+    overflow-x: hidden;
 }
 
 /* --- NAVIGAZIONE (HEADER) --- */
@@ -76,7 +76,6 @@ nav a:hover {
 
 /* --- SEZIONE HERO --- */
 .hero {
-    /* Metti qui il link a una tua bella foto panoramica della struttura! */
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80');
     background-size: cover;
     background-position: center;
@@ -116,7 +115,7 @@ nav a:hover {
     background-color: #f9f9f9;
 }
 
-/* --- GRIGLIA SPAZI (Forzata a 2 Colonne su PC) --- */
+/* --- GRIGLIA SPAZI --- */
 .grid-camere {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -153,6 +152,7 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 100%;
 }
 
 .form-contatti input, .form-contatti textarea {
@@ -161,20 +161,21 @@ nav a:hover {
     border-radius: 5px;
     font-size: 16px;
     width: 100%;
-    max-width: 100%; /* Risolve il problema di sbordamento su Safari/iPhone */
-    box-sizing: border-box; 
+    /* LA RIGA MAGICA PER BLOCCARE IPHONE: */
+    min-width: 0; 
 }
 
 .date-prenotazione {
     display: flex;
     gap: 15px;
     text-align: left;
-    width: 100%; /* Assicura che il contenitore delle date stia nei bordi */
+    width: 100%;
 }
 
 .date-prenotazione div {
     flex: 1;
-    width: 100%; /* Forza i singoli blocchi a non allargarsi */
+    /* BLOCCHIAMO ANCHE IL CONTENITORE: */
+    min-width: 0; 
 }
 
 /* --- FOOTER --- */
@@ -185,7 +186,7 @@ footer {
     padding: 40px 20px;
 }
 
-/* --- MOBILE RESPONSIVE (Cellulari e Tablet piccoli) --- */
+/* --- MOBILE RESPONSIVE --- */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -198,14 +199,8 @@ footer {
     
     .date-prenotazione {
         flex-direction: column;
-        width: 100%;
     }
 
-    .date-prenotazione div {
-        width: 100%;
-    }
-
-    /* Sui cellulari la griglia diventa a 1 sola colonna */
     .grid-camere {
         grid-template-columns: 1fr;
     }

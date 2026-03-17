@@ -165,17 +165,16 @@ nav a:hover {
     min-width: 0; 
 }
 
-.date-prenotazione {
-    display: flex;
-    gap: 15px;
-    text-align: left;
+.date-prenotazione input[type="date"] {
     width: 100%;
+    max-width: 100%;   /* ← forza il limite massimo */
+    min-width: 0;
 }
 
 .date-prenotazione div {
     flex: 1;
-    /* BLOCCHIAMO ANCHE IL CONTENITORE: */
-    min-width: 0; 
+    min-width: 0;
+    overflow: hidden;  /* ← impedisce al figlio di sforare il genitore flex */
 }
 
 /* --- FOOTER --- */

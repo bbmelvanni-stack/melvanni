@@ -75,6 +75,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
+  <!--
+    ╔═══════════════════════════════════════════════════════════════╗
+    ║  ELFSIGHT — Aggiungi questo script DOPO aver creato          ║
+    ║  i tuoi widget su https://elfsight.com                       ║
+    ║                                                              ║
+    ║  <script src="https://static.elfsight.com/platform/         ║
+    ║   platform.js" async></script>                               ║
+    ║                                                              ║
+    ║  Poi nei div #pane-google e #pane-facebook sostituisci       ║
+    ║  i placeholder con i tag <div class="elfsight-app-...">      ║
+    ╚═══════════════════════════════════════════════════════════════╝
+  -->
+  <script src="https://static.elfsight.com/platform/platform.js" async></script>
+
   <style>
     /* ═══════════════════════════════════════════════
        VARIABLES & RESET
@@ -619,32 +633,150 @@
     .lb-prev:hover, .lb-next:hover { color: var(--white); }
 
     /* ═══════════════════════════════════════════════
-       RECENSIONI
+       RECENSIONI — multi-platform
     ═══════════════════════════════════════════════ */
-    .reviews-bg {
-      background:
-        linear-gradient(to right, rgba(245,240,232,.95) 40%, rgba(245,240,232,.7)),
-        url('https://static.wixstatic.com/media/a9ff3b_75dfd28a431049f39b6f85be15a1820e~mv2_d_2500_1829_s_2.jpg/v1/fill/w_1200,h_800,al_c,q_85/reviews-bg.jpg') right/cover no-repeat;
+    #recensioni { background: var(--cream); }
+
+    .reviews-header { text-align: center; margin-bottom: 56px; }
+    .reviews-header p { color: var(--text-mid); margin-top: 14px; font-size: 1rem; }
+
+    /* Score bar */
+    .reviews-score-bar {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+      padding: 36px 40px;
+      background: var(--warm);
+      border-top: 3px solid var(--terra);
     }
-    .reviews-inner { max-width: 680px; }
-    .stars { color: var(--gold); font-size: 1.1rem; letter-spacing: .1em; margin-bottom: 24px; }
-    .review-quote {
+    .score-item { text-align: center; }
+    .score-logo {
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text-lt);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .score-logo svg { width: 16px; height: 16px; }
+    .score-num {
       font-family: var(--ff-serif);
-      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      font-size: 2.6rem;
       font-weight: 300;
-      font-style: italic;
-      line-height: 1.55;
       color: var(--text);
-      margin-bottom: 32px;
+      line-height: 1;
     }
-    .review-author {
+    .score-stars { color: var(--gold); font-size: .8rem; margin-top: 4px; letter-spacing: .08em; }
+    .score-count { font-size: .72rem; color: var(--text-lt); margin-top: 2px; }
+    .score-divider {
+      width: 1px;
+      background: rgba(181,101,29,.2);
+      align-self: stretch;
+    }
+
+    /* Platform tabs */
+    .reviews-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .rev-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border: 1.5px solid rgba(181,101,29,.25);
+      background: transparent;
+      font-family: var(--ff-sans);
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .rev-tab:hover { border-color: var(--terra); color: var(--terra); }
+    .rev-tab.active { background: var(--terra); border-color: var(--terra); color: var(--white); }
+    .rev-tab-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Elfsight container */
+    .elfsight-pane {
+      display: none;
+      animation: fadeIn .4s ease;
+    }
+    .elfsight-pane.active { display: block; }
+
+    /* Placeholder box (shown before Elfsight loads or widget not set up) */
+    .elfsight-placeholder {
+      border: 2px dashed rgba(181,101,29,.3);
+      border-radius: 2px;
+      padding: 48px 32px;
+      text-align: center;
+      color: var(--text-lt);
+    }
+    .elfsight-placeholder strong {
+      display: block;
+      font-family: var(--ff-serif);
+      font-size: 1.2rem;
+      color: var(--text-mid);
+      margin-bottom: 10px;
+    }
+    .elfsight-placeholder code {
+      display: inline-block;
+      background: var(--warm);
+      padding: 6px 14px;
+      font-size: .82rem;
+      color: var(--terra);
+      margin-top: 14px;
+      letter-spacing: .05em;
+    }
+    .elfsight-placeholder a {
+      color: var(--terra);
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Airbnb manual cards */
+    .airbnb-pane { display: none; animation: fadeIn .4s ease; }
+    .airbnb-pane.active { display: block; }
+    .airbnb-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .rev-card {
+      background: var(--white);
+      padding: 32px 28px;
+      border-bottom: 3px solid transparent;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .rev-card:hover {
+      border-color: var(--terra);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px var(--shadow);
+    }
+    .rev-card-header {
       display: flex;
       align-items: center;
       gap: 14px;
+      margin-bottom: 20px;
     }
-    .review-avatar {
-      width: 44px;
-      height: 44px;
+    .rev-avatar {
+      width: 46px; height: 46px;
       border-radius: 50%;
       background: var(--terra);
       display: flex;
@@ -652,20 +784,48 @@
       justify-content: center;
       color: var(--white);
       font-family: var(--ff-serif);
-      font-size: 1.1rem;
+      font-size: 1.15rem;
+      font-weight: 400;
       flex-shrink: 0;
     }
-    .review-name { font-weight: 500; font-size: .9rem; }
-    .review-source { font-size: .75rem; color: var(--text-lt); }
-    .reviews-nav { display: flex; gap: 12px; margin-top: 48px; }
-    .rev-dot {
-      width: 28px; height: 3px;
-      background: rgba(181,101,29,.25);
-      cursor: pointer;
-      transition: background var(--transition);
-      border: none;
+    .rev-card-meta strong { display: block; font-size: .9rem; font-weight: 500; }
+    .rev-card-meta span { font-size: .75rem; color: var(--text-lt); }
+    .rev-card-stars { color: var(--gold); font-size: .85rem; letter-spacing: .06em; margin-bottom: 14px; }
+    .rev-card blockquote {
+      font-family: var(--ff-serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--text-mid);
     }
-    .rev-dot.active { background: var(--terra); }
+    .rev-card-source {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 18px;
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-lt);
+    }
+    .src-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 900px) { .airbnb-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) {
+      .airbnb-grid { grid-template-columns: 1fr; }
+      .reviews-score-bar { gap: 28px; padding: 28px 20px; }
+      .score-divider { display: none; }
+    }
 
     /* ═══════════════════════════════════════════════
        CONTATTI
@@ -1133,29 +1293,89 @@
   </div>
 
   <!-- ─────────────────────── RECENSIONI ─────────────────────── -->
-  <section class="section reviews-bg" id="recensioni" aria-labelledby="recensioni-heading">
+  <section class="section" id="recensioni" aria-labelledby="recensioni-heading">
     <div class="container">
-      <div class="reviews-inner reveal">
-        <span class="tag">Recensioni</span>
-        <h2 id="recensioni-heading" style="margin-bottom:40px">Cosa dicono<br>i nostri ospiti</h2>
-        <div id="reviewSlider">
-          <div class="stars" aria-label="5 stelle su 5">★★★★★</div>
-          <blockquote class="review-quote" id="reviewText">
-            "Struttura pulitissima, accogliente e ben posizionata. Il personale è gentilissimo e disponibile. La colazione con il cornetto ischitano è deliziosa. Torneremo di sicuro!"
-          </blockquote>
-          <div class="review-author">
-            <div class="review-avatar" aria-hidden="true" id="reviewInitial">M</div>
-            <div>
-              <div class="review-name" id="reviewName">Marco B.</div>
-              <div class="review-source">Facebook · ★★★★★</div>
-            </div>
+
+      <!-- Header -->
+      <div class="reviews-header reveal">
+        <span class="tag">Recensioni verificate</span>
+        <h2 id="recensioni-heading">Cosa dicono i nostri ospiti</h2>
+        <p>Leggi le opinioni reali su Google, Facebook e Airbnb</p>
+      </div>
+
+      <!-- Score bar -->
+      <div class="reviews-score-bar reveal">
+        <div class="score-item">
+          <div class="score-logo">
+            <!-- Google G -->
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            Google
           </div>
+          <div class="score-num">4.9</div>
+          <div class="score-stars">★★★★★</div>
+          <div class="score-count">su Google Maps</div>
         </div>
-        <div class="reviews-nav" role="tablist" aria-label="Seleziona recensione">
-          <button class="rev-dot active" onclick="showReview(0)" aria-label="Recensione 1" role="tab"></button>
-          <button class="rev-dot"        onclick="showReview(1)" aria-label="Recensione 2" role="tab"></button>
-          <button class="rev-dot"        onclick="showReview(2)" aria-label="Recensione 3" role="tab"></button>
+        <div class="score-divider"></div>
+        <div class="score-item">
+          <div class="score-logo">
+            <!-- Facebook f -->
+            <svg viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            Facebook
+          </div>
+          <div class="score-num">5.0</div>
+          <div class="score-stars">★★★★★</div>
+          <div class="score-count">su Facebook</div>
         </div>
+        <div class="score-divider"></div>
+        <div class="score-item">
+          <div class="score-logo">
+            <!-- Airbnb simplified -->
+            <svg viewBox="0 0 24 24" fill="#FF5A5F" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.5 2 6 5.5 6 9c0 5 6 13 6 13s6-8 6-13c0-3.5-2.5-7-6-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/>
+            </svg>
+            Airbnb
+          </div>
+          <div class="score-num">4.8</div>
+          <div class="score-stars">★★★★★</div>
+          <div class="score-count">su Airbnb</div>
+        </div>
+      </div>
+
+      <!-- Platform tabs -->
+      <div class="reviews-tabs reveal" role="tablist" aria-label="Filtra per piattaforma">
+        <button class="rev-tab active" onclick="switchTab('google')" role="tab" aria-selected="true" aria-controls="pane-google">
+          <span class="rev-tab-dot" style="background:#4285F4"></span> Google
+        </button>
+        <button class="rev-tab" onclick="switchTab('facebook')" role="tab" aria-selected="false" aria-controls="pane-facebook">
+          <span class="rev-tab-dot" style="background:#1877F2"></span> Facebook
+        </button>
+        <button class="rev-tab" onclick="switchTab('airbnb')" role="tab" aria-selected="false" aria-controls="pane-airbnb">
+          <span class="rev-tab-dot" style="background:#FF5A5F"></span> Airbnb
+        </button>
+      </div>
+
+      <!-- ── Google (Elfsight) ─────────────────────────── -->
+      <div class="elfsight-pane active" id="pane-reviews" role="tabpanel">
+        <!--
+          ╔══════════════════════════════════════════════════════╗
+          ║  ISTRUZIONI GOOGLE REVIEWS (Elfsight)               ║
+          ║  1. Vai su https://elfsight.com/google-reviews-widget║
+          ║  2. Crea widget → collegaci la tua scheda Google     ║
+          ║  3. Copia il tag <div class="elfsight-app-...">      ║
+          ║  4. Incollalo qui sotto al posto del placeholder     ║
+          ╚══════════════════════════════════════════════════════╝
+        -->
+        <div class="elfsight-app-89885b66-7a20-4c0c-ae41-1721c560c84f" data-elfsight-app-lazy></div>
+        <!-- Esempio con widget reale (decommentare e sostituire l'ID):
+        <div class="elfsight-app-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" data-elfsight-app-lazy></div>
+        -->
       </div>
     </div>
   </section>
@@ -1179,7 +1399,7 @@
               <span class="contact-icon" aria-hidden="true">✉️</span>
               <div class="contact-detail-body">
                 <strong>Email</strong>
-                <span><a href="mailto:bb.melvanni@gmail.com">bb.melvanni@gmail.com</a></span>
+                <span><a href="/cdn-cgi/l/email-protection#ea8888c4878f869c8b848483aa8d878b8386c4898587"><span class="__cf_email__" data-cfemail="7416165a19111802151a1a1d341319151d185a171b19">[email&#160;protected]</span></a></span>
               </div>
             </div>
             <div class="contact-detail">
@@ -1284,7 +1504,7 @@
       <p>
         Via Felice Terracciano, 150 · Pomigliano d'Arco (NA) · Italy<br>
         <a href="tel:+393886523363">+39 388 652 3363</a> ·
-        <a href="mailto:bb.melvanni@gmail.com">bb.melvanni@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#96f4f4b8fbf3fae0f7f8f8ffd6f1fbf7fffab8f5f9fb"><span class="__cf_email__" data-cfemail="ceacace0a3aba2b8afa0a0a78ea9a3afa7a2e0ada1a3">[email&#160;protected]</span></a>
       </p>
       <p style="margin-top:16px; font-size:.75rem; opacity:.5">
         © 2024 B&amp;B Melvanni · CIN: IT063057C25POWG5Y9 ·
@@ -1294,7 +1514,7 @@
   </footer>
 
   <!-- ─────────────────────── JAVASCRIPT ─────────────────────── -->
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── Sticky header ──────────────────────────────────
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
@@ -1359,34 +1579,20 @@
       if (e.key === 'ArrowRight') lbNav(1);
     });
 
-    // ── Reviews slider ─────────────────────────────────
-    const reviews = [
-      {
-        text: '"Struttura pulitissima, accogliente e ben posizionata. Il personale è gentilissimo e disponibile. La colazione con il cornetto ischitano è deliziosa. Torneremo di sicuro!"',
-        name: 'Marco B.',
-        initial: 'M'
-      },
-      {
-        text: '"Camera spaziosa, pulita e confortevole. Il proprietario è stato molto disponibile e ci ha suggerito i posti migliori da visitare nei dintorni. Ottimo rapporto qualità-prezzo!"',
-        name: 'Giulia R.',
-        initial: 'G'
-      },
-      {
-        text: '"Ottima scelta per visitare Napoli e dintorni. La navetta per l\'aeroporto è stata comodissima. Ambiente familiare e accogliente, lo consiglio vivamente a tutti!"',
-        name: 'Francesco M.',
-        initial: 'F'
-      }
-    ];
-    const dots = document.querySelectorAll('.rev-dot');
-    function showReview(idx) {
-      const r = reviews[idx];
-      document.getElementById('reviewText').textContent = r.text;
-      document.getElementById('reviewName').textContent = r.name;
-      document.getElementById('reviewInitial').textContent = r.initial;
-      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    // ── Reviews tab switcher ───────────────────────
+    function switchTab(platform) {
+      // panes
+      document.querySelectorAll('.elfsight-pane, .airbnb-pane').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById('pane-' + platform);
+      if (target) target.classList.add('active');
+      // tabs
+      document.querySelectorAll('.rev-tab').forEach((btn, i) => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+      event.currentTarget.classList.add('active');
+      event.currentTarget.setAttribute('aria-selected', 'true');
     }
-    let revIdx = 0;
-    setInterval(() => { revIdx = (revIdx + 1) % reviews.length; showReview(revIdx); }, 5000);
 
     // ── Contact form (Formspree) ────────────────────────
     const form = document.getElementById('contactForm');
@@ -1417,13 +1623,4 @@
       }
     });
 
-    // ── Set min date for date inputs ───────────────────
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('fcheckin').min = today;
-    document.getElementById('fcheckout').min = today;
-    document.getElementById('fcheckin').addEventListener('change', function() {
-      document.getElementById('fcheckout').min = this.value;
-    });
-  </script>
-</body>
-</html>
+    // ── Set min date for date inputs ────�
